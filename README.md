@@ -71,7 +71,7 @@ This is the next step of Exploratory Data Analysis (EDA)
           </td>
           <td>
             <ul>
-              <li>Used Python package <b>vin</b>.</li>
+              <li>Used Python package <b>vin</b> to impute missing values.</li>
               <li>Dropped 192 reamining rows with NaN value.</li>
               <li>Applied upper bound outlier removal at 99 percentile.</li>
               <li>Converted <b>year</b> column datatype from float to int</li>
@@ -88,7 +88,7 @@ This is the next step of Exploratory Data Analysis (EDA)
           </td>
           <td>
             <ul>
-              <li>Used Python package <b>vin</b></li>
+              <li>Used Python package <b>vin</b> to impute missing values.</li>
               <li>Applied JamesSteinEncoder with RandomForestRegressor encoder</li>
             </ul>
           </td>
@@ -241,10 +241,12 @@ This is the next step of Exploratory Data Analysis (EDA)
             </ul>
           </td>
           <td>
-            <li>Used Python package <b>vin</b> to impute missing values.</li>
-            <li>Imputed similar types to one using contextual/domain understanding.</li>
-            <li>Example: <b>sedan</b> and <b>sedan/saloon</b> are same type of vehicle</li>
-            <li>Applied ordinal encoding with order of worst to best</li>
+            <ul>
+              <li>Used Python package <b>vin</b> to impute missing values.</li>
+              <li>Imputed similar types to one using contextual/domain understanding.</li>
+              <li>Example: <b>sedan</b> and <b>sedan/saloon</b> are same type of vehicle</li>
+              <li>Applied ordinal encoding with order of worst to best</li>
+            </ul>
           </td>
       </tr>
       <tr>
