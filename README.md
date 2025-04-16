@@ -2,7 +2,7 @@
 
 Goal is to understand what factors make a car more or less expensive. As a result of our analysis, we should provide clear recommendations to our client -- a used car dealership -- as to what consumers value in a used car.
 
-[Link to Coupons Dataset](https://github.com/atewari-bot/vehicle-value-prediction/blob/main/data/vehicles.csv)
+[Link to Vehicles Dataset](https://github.com/atewari-bot/vehicle-value-prediction/blob/main/data/vehicles.csv)
 
 [Link to Jupyter Notebook](https://github.com/atewari-bot/vehicle-value-prediction/blob/main/vehicle_value_prediction.ipynb)
 
