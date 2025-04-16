@@ -1,4 +1,4 @@
-# Assignment 11.1 - Will the Customer Accept the Coupon?
+# Assignment 11.1 - What Drives the Price of a Car?
 
 Goal is to understand what factors make a car more or less expensive. As a result of our analysis, we should provide clear recommendations to our client -- a used car dealership -- as to what consumers value in a used car.
 
