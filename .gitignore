@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 car/
 mlruns/
+catboost_info/
+.DS_Store
 
 # C extensions
 *.so
