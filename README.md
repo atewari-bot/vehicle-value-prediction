@@ -424,6 +424,8 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
   ![Image](/images/model_r2_evaluation.png)
 
+  **Key Takeaways:**
+  * XGBoost exhibits least value for loss function.
 
 #### Actual Vs Predicted Price Visualization
 
