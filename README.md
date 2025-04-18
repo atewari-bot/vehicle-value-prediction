@@ -88,7 +88,7 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
   * <b>log_vehicle_age:</b> Vehicle does not decline linearly. So, log of age represents depreciation more accurately.
   * <b>vehicle_age_odometer_ratio:</b> (Vehicle wear rate) Ratio of odometer and vehicle age ratio
   * <b>vehicle_age_condition:</b> Helps identify if older cars are in surprisingly good/bad condition.
-  * <b>title_good_condition:</b> Clean + good condition = better resale value.
+  * ~~<b>title_good_condition:</b> Clean + good condition = better resale value.~~
 
 * Feature Imputation/Transformation
 
@@ -130,6 +130,7 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
             <ul>
               <li>Used Python package <b>vin</b> to impute missing values.</li>
               <li>Applied JamesSteinEncoder with RandomForestRegressor encoder</li>
+              <li>Dropped encoded feature after imputing cylinders based on manufacturer.</li>
             </ul>
           </td>
       </tr>
@@ -188,12 +189,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>0.705819</td>
           <td>
             <ul>
-              <li>OHE</li>
+              <li><s>OHE</s></li>
+              <li>Dropped</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Applied one-hot encoding</li>
+              <li><s>Applied one-hot encoding</s></li>
+              <li>Dropped the feature</li>
             </ul>
           </td>
       <tr>
@@ -217,12 +220,13 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>1.930753</td>
           <td>
             <ul>
-              <li>Ordinal Encoding</li>
+              <li><s>Ordinal Encoding</s></li>
+              <li>Dropped the feature</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Applied ordinal encoding with order of worst to best</li>
+              <li><s>Applied ordinal encoding with order of worst to best</s></li>
             </ul>
           </td>
       </tr>
@@ -231,12 +235,13 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>0.598763</td>
           <td>
             <ul>
-              <li>OHE</li>
+              <li><s>OHE</s></li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Applied one-hot encoding</li>
+              <li><s>Applied one-hot encoding</s></li>
+              <li>Dropped the feature</li>
             </ul>
           </td>
       </tr>
@@ -245,7 +250,7 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>37.725356</td>
           <td>
             <ul>
-              <li>Column Dropped</li>
+              <li>Dropped the feature</li>
             </ul>
           </td>
           <td>
@@ -294,12 +299,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>30.501078</td>
           <td>
             <ul>
-              <li>Target based Encoding</li>
+              <li><s>Target based Encoding</s></li>
+              <li><Dropped</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Applied JamesSteinEncoder with RandomForestRegressor encoder</li>
+              <li><s>Applied JamesSteinEncoder with RandomForestRegressor encoder</s></li>
+              <li><Dropped the feature</li>
             </ul>
           </td>
       </tr>
@@ -325,12 +332,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>NA</td>
           <td>
             <ul>
-              <li>Target based Encoding</li>
+              <li><s>Target based Encoding</s></li>
+              <li><Dropped</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Applied JamesSteinEncoder with RandomForestRegressor encoder</li>
+              <li><s>Applied JamesSteinEncoder with RandomForestRegressor encoder</s></li>
+              <li><Dropped the feature</li>
             </ul>
           </td>
       </tr>
@@ -339,12 +348,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>NA</td>
           <td>
             <ul>
-              <li>Target based Encoding</li>
+              <li><s>Target based Encoding</s></li>
+              <li><Dropped</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Applied JamesSteinEncoder with RandomForestRegressor encoder</li>
+              <li><s>Applied JamesSteinEncoder with RandomForestRegressor encoder</s></li>
+              <li><Dropped the feature</li>
             </ul>
           </td>
       </tr>
@@ -392,6 +403,7 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
     * Added Adjusted R2 Score
   * Hyperparameter Tuning
     * Used <b>Precompute</b> and <b>warm_start</b> parameters to reduce model training time for ElasticNet from 33 mins to 45 seconds.
+    * Used <b>Early Stopping</b> parameter for HistGradientBoostingRegressor.
   * Data Leakage Issue
     * Price imputation cause data leakage to the model. Due to which we saw R2 score of 0.99.
   * Model Accuracy Improvement
@@ -400,19 +412,18 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
 #### Models Performance Metrics
 
-
-| Metric             | Linear Regressor | Ridge Regressor | Lasso Regressor | ElasticNet Regressor | XGBRegressor | HistGradientBoosting Regressor | DecisionTreeRegressor | RandomForestRegressor |
-|--------------------|------------------|------------------|------------------|------------------------|--------------|-------------------------------|------------------------|------------------------|
-| MSE Train          | 44229385.76      | 49396228.25      | 49395734.69      | 49395797.42            | 18240685.92  | 30123258.20                  | 18191981.07           | 2657314.58            |
-| MSE Test           | 44486727.07      | 49569717.51      | 49567270.59      | 49567033.75            | 23877745.28  | 31513273.86                  | 31449760.21           | 18302312.41           |
-| RMSE Train         | 6650.52          | 7028.25          | 7028.21          | 7028.21                | 4270.91      | 5488.47                      | 4265.21               | 1630.13               |
-| RMSE Test          | 6669.84          | 7040.58          | 7040.40          | 7040.39                | 4886.49      | 5613.67                      | 5608.01               | 4278.12               |
-| MAE Train          | 4326.03          | 4721.46          | 4720.90          | 4720.79                | 2652.61      | 3438.91                      | 2398.76               | 831.08                |
-| MAE Test           | 4326.50          | 4727.46          | 4726.85          | 4726.75                | 2947.20      | 3495.95                      | 3167.26               | 2205.15               |
-| R2 Train           | 0.72             | 0.68             | 0.68             | 0.68                   | 0.88         | 0.81                         | 0.88                  | 0.98                  |
-| R2 Test            | 0.72             | 0.68             | 0.68             | 0.68                   | 0.85         | 0.80                         | 0.80                  | 0.88                  |
-| Adjusted R2 Train  | 0.72             | 0.68             | 0.68             | 0.68                   | 0.88         | 0.81                         | 0.88                  | 0.98                  |
-| Adjusted R2 Test   | 0.72             | 0.68             | 0.68             | 0.68                   | 0.85         | 0.80                         | 0.80                  | 0.88                  |
+| Metric              | Linear Regressor | Ridge Regressor | Lasso Regressor | ElasticNet Regressor | XGBRegressor | Hist GradientBoosting Regressor | DecisionTreeRegressor | RandomForestRegressor |
+|---------------------|------------------|------------------|------------------|-----------------------|--------------|-------------------------------|------------------------|------------------------|
+| MSE Train           | 47601929.10      | 49643882.38      | 49643882.84      | 49643885.75           | 13351305.52  | 20897676.92                  | 13121555.02            | 2757472.66             |
+| MSE Test            | 48617621.72      | 50745609.62      | 50745595.17      | 50745702.40           | 24333799.65  | 30935852.03                  | 31571833.46            | 19984805.11            |
+| RMSE Train          | 6899.42          | 7045.84          | 7045.84          | 7045.84               | 3653.94      | 4571.40                      | 3622.37                | 1660.56                |
+| RMSE Test           | 6972.63          | 7123.60          | 7123.59          | 7123.60               | 4932.93      | 5562.00                      | 5618.88                | 4470.44                |
+| MAE Train           | 4533.00          | 4727.06          | 4727.06          | 4726.99               | 2199.54      | 2826.55                      | 1883.84                | 775.18                 |
+| MAE Test            | 4569.37          | 4768.14          | 4768.13          | 4768.08               | 2769.99      | 3299.13                      | 2931.57                | 2086.49                |
+| R2 Train            | 0.70             | 0.68             | 0.68             | 0.68                  | 0.91         | 0.87                         | 0.92                   | 0.98                   |
+| R2 Test             | 0.69             | 0.68             | 0.68             | 0.68                  | 0.84         | 0.80                         | 0.80                   | 0.87                   |
+| Adjusted R2 Train   | 0.70             | 0.68             | 0.68             | 0.68                  | 0.91         | 0.87                         | 0.92                   | 0.98                   |
+| Adjusted R2 Test    | 0.69             | 0.68             | 0.68             | 0.68                  | 0.84         | 0.80                         | 0.80                   | 0.87                   |
 
 #### Models Loss Function Visualization
 
@@ -434,7 +445,7 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
   **Key Takeaways:**
   * RandomForestRegressor have the least value for loss function.
-  * RandomForestRegressor have best R2 score value of ~0.89 for test and validation data set. This mean model is capturing 89% of the patterns that determine car prices based on the features provided (like age, mileage, condition, etc.).
+  * RandomForestRegressor have best R2 score value of ~0.87 for test and validation data set. This mean model is capturing 87% of the patterns that determine car prices based on the features provided.
 
 #### Actual Vs Predicted Price Visualization
 
@@ -478,30 +489,16 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
     | Features                   |   Permutation Importance Mean |   Permutation Importance Std |
     |----------------------------|-------------------------------|------------------------------|
-    | model_encoded              |                          0.49 |                            0 |
-    | log_vehicle_age            |                          0.23 |                            0 |
-    | odometer                   |                          0.15 |                            0 |
-    | vehicle_drive              |                          0.06 |                            0 |
-    | vehicle_type               |                          0.06 |                            0 |
-    | vehicle_age_odometer_ratio |                          0.05 |                            0 |
-    | vehicle_condition          |                          0.04 |                            0 |
-    | manufacturer_encoded       |                          0.04 |                            0 |
-    | fuel_gas                   |                          0.03 |                            0 |
-    | num_cylinders              |                          0.03 |                            0 |
-    | fuel_diesel                |                          0.02 |                            0 |
-    | paint_color_encoded        |                          0.02 |                            0 |
-    | region_encoded             |                          0.02 |                            0 |
-    | state_encoded              |                          0.02 |                            0 |
-    | transmission_other         |                          0.01 |                            0 |
-    | transmission_automatic     |                          0.01 |                            0 |
-    | vehicle_title_status       |                          0.01 |                            0 |
-    | fuel_electric              |                          0    |                            0 |
-    | fuel_hybrid                |                          0    |                            0 |
-    | fuel_other                 |                          0    |                            0 |
-    | title_good_condition       |                          0    |                            0 |
-    | vehicle_age_condition      |                          0    |                            0 |
-    | vehicle_age                |                          0    |                            0 |
-    | transmission_manual        |                          0    |                            0 |
+    | model_encoded              |                          0.71 |                            0 |
+    | odometer                   |                          0.12 |                            0 |
+    | vehicle_age                |                          0.1  |                            0 |
+    | log_vehicle_age            |                          0.1  |                            0 |
+    | num_cylinders              |                          0.08 |                            0 |
+    | vehicle_type               |                          0.08 |                            0 |
+    | vehicle_drive              |                          0.07 |                            0 |
+    | vehicle_age_odometer_ratio |                          0.06 |                            0 |
+    | vehicle_age_condition      |                          0.05 |                            0 |
+    | vehicle_condition          |                          0.02 |                            0 |
 
   ##### Linear Regression
 
