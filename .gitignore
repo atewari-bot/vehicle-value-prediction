@@ -5,6 +5,7 @@ __pycache__/
 car/
 mlruns/
 catboost_info/
+models/
 .DS_Store
 
 # C extensions
