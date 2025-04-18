@@ -403,16 +403,16 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
 | Metric             | Linear Regressor | Ridge Regressor | Lasso Regressor | ElasticNet Regressor | XGBRegressor | HistGradientBoosting Regressor | DecisionTreeRegressor | RandomForestRegressor |
 |--------------------|------------------|------------------|------------------|------------------------|--------------|-------------------------------|------------------------|------------------------|
-| MSE Train          | 4.441425e+07     | 4.956479e+07     | 4.955961e+07     | 4.955967e+07           | 1.827579e+07 | 3.049972e+07                  | 1.538371e+07           | 2.666361e+06           |
-| MSE Test           | 4.399326e+07     | 4.912720e+07     | 4.912108e+07     | 4.912123e+07           | 2.305160e+07 | 3.105107e+07                  | 3.089348e+07           | 1.743582e+07           |
-| RMSE Train         | 6.664402e+03     | 7.040226e+03     | 7.039859e+03     | 7.039863e+03           | 4.275020e+03 | 5.522655e+03                  | 3.922208e+03           | 1.632900e+03           |
-| RMSE Test          | 6.632742e+03     | 7.009080e+03     | 7.008643e+03     | 7.008654e+03           | 4.801209e+03 | 5.572349e+03                  | 5.558190e+03           | 4.175622e+03           |
-| MAE Train          | 4.331177e+03     | 4.727050e+03     | 4.724849e+03     | 4.724744e+03           | 2.654963e+03 | 3.450958e+03                  | 2.136398e+03           | 8.328990e+02           |
-| MAE Test           | 4.309288e+03     | 4.706869e+03     | 4.704857e+03     | 4.704759e+03           | 2.915236e+03 | 3.487311e+03                  | 3.056769e+03           | 2.167751e+03           |
-| R2 Train           | 7.156924e-01     | 6.827224e-01     | 6.827556e-01     | 6.827552e-01           | 8.830117e-01 | 8.047630e-01                  | 9.015247e-01           | 9.829319e-01           |
-| R2 Test            | 7.187060e-01     | 6.858795e-01     | 6.859187e-01     | 6.859177e-01           | 8.526075e-01 | 8.014587e-01                  | 8.024664e-01           | 8.885149e-01           |
-| Adjusted R2 Train  | 7.156688e-01     | 6.826961e-01     | 6.827292e-01     | 6.827288e-01           | 8.830020e-01 | 8.047468e-01                  | 9.015165e-01           | 9.829305e-01           |
-| Adjusted R2 Test   | 7.186125e-01     | 6.857751e-01     | 6.858143e-01     | 6.858133e-01           | 8.525585e-01 | 8.013927e-01                  | 8.024007e-01           | 8.884779e-01           |
+| MSE Train          | 44229385.76      | 49396228.25      | 49395734.69      | 49395797.42            | 18240685.92  | 30123258.20                  | 18191981.07           | 2657314.58            |
+| MSE Test           | 44486727.07      | 49569717.51      | 49567270.59      | 49567033.75            | 23877745.28  | 31513273.86                  | 31449760.21           | 18302312.41           |
+| RMSE Train         | 6650.52          | 7028.25          | 7028.21          | 7028.21                | 4270.91      | 5488.47                      | 4265.21               | 1630.13               |
+| RMSE Test          | 6669.84          | 7040.58          | 7040.40          | 7040.39                | 4886.49      | 5613.67                      | 5608.01               | 4278.12               |
+| MAE Train          | 4326.03          | 4721.46          | 4720.90          | 4720.79                | 2652.61      | 3438.91                      | 2398.76               | 831.08                |
+| MAE Test           | 4326.50          | 4727.46          | 4726.85          | 4726.75                | 2947.20      | 3495.95                      | 3167.26               | 2205.15               |
+| R2 Train           | 0.72             | 0.68             | 0.68             | 0.68                   | 0.88         | 0.81                         | 0.88                  | 0.98                  |
+| R2 Test            | 0.72             | 0.68             | 0.68             | 0.68                   | 0.85         | 0.80                         | 0.80                  | 0.88                  |
+| Adjusted R2 Train  | 0.72             | 0.68             | 0.68             | 0.68                   | 0.88         | 0.81                         | 0.88                  | 0.98                  |
+| Adjusted R2 Test   | 0.72             | 0.68             | 0.68             | 0.68                   | 0.85         | 0.80                         | 0.80                  | 0.88                  |
 
 #### Models Loss Function Visualization
 
@@ -472,34 +472,36 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
 #### Most Imprtant Feature Selection Visualization
 
+  * A permutation importance mean of 0 means that shuffling that feature had no effect on the model’s performance — at all.
+  * A permutation importance standard deviation (std) of 0 means that across all the permutations (random shuffles) done during the importance calculation, the feature’s impact on the model’s performance was exactly the same every time.
   * Most important features as per best model based on RandomForestRegressor are as follows:
 
     | Features                   |   Permutation Importance Mean |   Permutation Importance Std |
     |----------------------------|-------------------------------|------------------------------|
-    | model_encoded              |                   0.506307    |                  0.00192967  |
-    | log_vehicle_age            |                   0.231115    |                  0.000989822 |
-    | odometer                   |                   0.15158     |                  0.000844946 |
-    | vehicle_drive              |                   0.0596375   |                  0.00036149  |
-    | vehicle_age_odometer_ratio |                   0.0545906   |                  0.00036105  |
-    | vehicle_type               |                   0.0542512   |                  0.000322732 |
-    | vehicle_condition          |                   0.0404631   |                  0.00034835  |
-    | manufacturer_encoded       |                   0.0397567   |                  0.000264473 |
-    | num_cylinders              |                   0.0360877   |                  0.000351327 |
-    | fuel_diesel                |                   0.0238663   |                  0.000322384 |
-    | state_encoded              |                   0.0227645   |                  0.000298867 |
-    | region_encoded             |                   0.0224454   |                  0.000365618 |
-    | fuel_gas                   |                   0.0213357   |                  0.000261419 |
-    | paint_color_encoded        |                   0.0204294   |                  0.000230751 |
-    | transmission_other         |                   0.011612    |                  0.000200928 |
-    | transmission_automatic     |                   0.00733399  |                  0.000224791 |
-    | vehicle_title_status       |                   0.00677997  |                  0.000101094 |
-    | fuel_other                 |                   0.00335671  |                  3.52621e-05 |
-    | transmission_manual        |                   0.00167926  |                  4.037e-05   |
-    | fuel_hybrid                |                   0.00017335  |                  6.66447e-06 |
-    | fuel_electric              |                   8.05131e-05 |                  9.45524e-06 |
-    | title_good_condition       |                   0           |                  0           |
-    | vehicle_age_condition      |                   0           |                  0           |
-    | vehicle_age                |                   0           |                  0           |
+    | model_encoded              |                          0.49 |                            0 |
+    | log_vehicle_age            |                          0.23 |                            0 |
+    | odometer                   |                          0.15 |                            0 |
+    | vehicle_drive              |                          0.06 |                            0 |
+    | vehicle_type               |                          0.06 |                            0 |
+    | vehicle_age_odometer_ratio |                          0.05 |                            0 |
+    | vehicle_condition          |                          0.04 |                            0 |
+    | manufacturer_encoded       |                          0.04 |                            0 |
+    | fuel_gas                   |                          0.03 |                            0 |
+    | num_cylinders              |                          0.03 |                            0 |
+    | fuel_diesel                |                          0.02 |                            0 |
+    | paint_color_encoded        |                          0.02 |                            0 |
+    | region_encoded             |                          0.02 |                            0 |
+    | state_encoded              |                          0.02 |                            0 |
+    | transmission_other         |                          0.01 |                            0 |
+    | transmission_automatic     |                          0.01 |                            0 |
+    | vehicle_title_status       |                          0.01 |                            0 |
+    | fuel_electric              |                          0    |                            0 |
+    | fuel_hybrid                |                          0    |                            0 |
+    | fuel_other                 |                          0    |                            0 |
+    | title_good_condition       |                          0    |                            0 |
+    | vehicle_age_condition      |                          0    |                            0 |
+    | vehicle_age                |                          0    |                            0 |
+    | transmission_manual        |                          0    |                            0 |
 
   ##### Linear Regression
 
