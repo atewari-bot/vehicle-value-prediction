@@ -363,13 +363,15 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
   * First data set us used for model training and testing
   * Second data set would be never seen dataset and would be used to validate model.
 * Split first data set into train and test set using scikit-learn train_test_split() method
-* Trained 6 types of models based on different regression algorithms.
+* Trained 8 types of models based on different regression algorithms.
   * LinearRegression
   * Ridge Regression
   * Lasso Regression
   * ElasticNet
   * XGBoostRegressor
   * HistGradientBoostingRegressor
+  * DecisionTreeRegressor
+  * RandomForestRegressor
 * Performed hyperparameters tuning of the models using GridSearchCV to perform cross-validation and evaulate best performing model.
 
 ## Evaluation
@@ -386,25 +388,31 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
 #### Evaluation Adjustment
 * Did few adjustments during multiple iterations of fixing issues and fine tuning model.
+  * Error Metrics
+    * Added Adjusted R2 Score
+  * Hyperparameter Tuning
+    * Used <b>Precompute</b> and <b>warm_start</b> parameters to reduce model training time for ElasticNet from 33 mins to 45 seconds.
   * Data Leakage Issue
     * Price imputation cause data leakage to the model. Due to which we saw R2 score of 0.99.
   * Model Accuracy Improvement
     * Orginally tried 4 regression models (LinearRegression, Ridge, Lasso and ElasticNet) and R2 score was 0.53
-    * Tried 2 additional models (XGBoostRegressor and HistGradientBoostingRegressor) which improved R2 score to 0.82 and 0.8 for test data respectively.
+    * Tried 4 additional models (XGBoostRegressor, HistGradientBoostingRegressor, DecisionTreeRegressor and RandomForestRegressor) which improved R2 score to 0.82 and 0.8 for test data respectively.
 
 #### Models Performance Metrics
 
 
-| Metric       | Linear Regression | Ridge Regression | Lasso Regression | ElasticNet Regression | XGBRegressor | HistGradientBoosting |
-|--------------|-------------------|------------------|------------------|------------------------|--------------|-----------------------|
-| MSE Train    | 4.401e+07         | 4.913e+07        | 4.913e+07        | 4.913e+07              | 2.483e+07    | 3.009e+07             |
-| MSE Test     | 4.547e+07         | 5.057e+07        | 5.057e+07        | 5.057e+07              | 2.846e+07    | 3.227e+07             |
-| RMSE Train   | 6.634e+03         | 7.009e+03        | 7.009e+03        | 7.009e+03              | 4.983e+03    | 5.486e+03             |
-| RMSE Test    | 6.743e+03         | 7.111e+03        | 7.111e+03        | 7.111e+03              | 5.335e+03    | 5.681e+03             |
-| MAE Train    | 4.314e+03         | 4.708e+03        | 4.708e+03        | 4.708e+03              | 3.087e+03    | 3.436e+03             |
-| MAE Test     | 4.373e+03         | 4.765e+03        | 4.765e+03        | 4.765e+03              | 3.250e+03    | 3.522e+03             |
-| R2 Train     | 0.718             | 0.685            | 0.685            | 0.685                  | 0.841        | 0.807                 |
-| R2 Test      | 0.710             | 0.678            | 0.678            | 0.678                  | 0.819        | 0.794                 |
+| Metric             | Linear Regressor | Ridge Regressor | Lasso Regressor | ElasticNet Regressor | XGBRegressor | HistGradientBoosting Regressor | DecisionTreeRegressor | RandomForestRegressor |
+|--------------------|------------------|------------------|------------------|------------------------|--------------|-------------------------------|------------------------|------------------------|
+| MSE Train          | 4.441425e+07     | 4.956479e+07     | 4.955961e+07     | 4.955967e+07           | 1.827579e+07 | 3.049972e+07                  | 1.538371e+07           | 2.666361e+06           |
+| MSE Test           | 4.399326e+07     | 4.912720e+07     | 4.912108e+07     | 4.912123e+07           | 2.305160e+07 | 3.105107e+07                  | 3.089348e+07           | 1.743582e+07           |
+| RMSE Train         | 6.664402e+03     | 7.040226e+03     | 7.039859e+03     | 7.039863e+03           | 4.275020e+03 | 5.522655e+03                  | 3.922208e+03           | 1.632900e+03           |
+| RMSE Test          | 6.632742e+03     | 7.009080e+03     | 7.008643e+03     | 7.008654e+03           | 4.801209e+03 | 5.572349e+03                  | 5.558190e+03           | 4.175622e+03           |
+| MAE Train          | 4.331177e+03     | 4.727050e+03     | 4.724849e+03     | 4.724744e+03           | 2.654963e+03 | 3.450958e+03                  | 2.136398e+03           | 8.328990e+02           |
+| MAE Test           | 4.309288e+03     | 4.706869e+03     | 4.704857e+03     | 4.704759e+03           | 2.915236e+03 | 3.487311e+03                  | 3.056769e+03           | 2.167751e+03           |
+| R2 Train           | 7.156924e-01     | 6.827224e-01     | 6.827556e-01     | 6.827552e-01           | 8.830117e-01 | 8.047630e-01                  | 9.015247e-01           | 9.829319e-01           |
+| R2 Test            | 7.187060e-01     | 6.858795e-01     | 6.859187e-01     | 6.859177e-01           | 8.526075e-01 | 8.014587e-01                  | 8.024664e-01           | 8.885149e-01           |
+| Adjusted R2 Train  | 7.156688e-01     | 6.826961e-01     | 6.827292e-01     | 6.827288e-01           | 8.830020e-01 | 8.047468e-01                  | 9.015165e-01           | 9.829305e-01           |
+| Adjusted R2 Test   | 7.186125e-01     | 6.857751e-01     | 6.858143e-01     | 6.858133e-01           | 8.525585e-01 | 8.013927e-01                  | 8.024007e-01           | 8.884779e-01           |
 
 #### Models Loss Function Visualization
 
@@ -425,7 +433,8 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
   ![Image](/images/model_r2_evaluation.png)
 
   **Key Takeaways:**
-  * XGBoost exhibits least value for loss function.
+  * RandomForestRegressor have the least value for loss function.
+  * RandomForestRegressor have best R2 score value of ~0.89 for test and validation data set. This mean model is capturing 89% of the patterns that determine car prices based on the features provided (like age, mileage, condition, etc.).
 
 #### Actual Vs Predicted Price Visualization
 
@@ -453,8 +462,44 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
   ![Image](/images/predicted_vs_actual_price_for_HistGradientBoostingRegressor.png)
 
+  ##### DecisionTreeRegressor
+
+  ![Image](/images/predicted_vs_actual_price_for_DecisionTreeRegressor.png)
+
+  ##### RandomForestRegressor
+
+  ![Image](/images/predicted_vs_actual_price_for_RandomForestRegressor.png)
 
 #### Most Imprtant Feature Selection Visualization
+
+  * Most important features as per best model based on RandomForestRegressor are as follows:
+
+    | Features                   |   Permutation Importance Mean |   Permutation Importance Std |
+    |----------------------------|-------------------------------|------------------------------|
+    | model_encoded              |                   0.506307    |                  0.00192967  |
+    | log_vehicle_age            |                   0.231115    |                  0.000989822 |
+    | odometer                   |                   0.15158     |                  0.000844946 |
+    | vehicle_drive              |                   0.0596375   |                  0.00036149  |
+    | vehicle_age_odometer_ratio |                   0.0545906   |                  0.00036105  |
+    | vehicle_type               |                   0.0542512   |                  0.000322732 |
+    | vehicle_condition          |                   0.0404631   |                  0.00034835  |
+    | manufacturer_encoded       |                   0.0397567   |                  0.000264473 |
+    | num_cylinders              |                   0.0360877   |                  0.000351327 |
+    | fuel_diesel                |                   0.0238663   |                  0.000322384 |
+    | state_encoded              |                   0.0227645   |                  0.000298867 |
+    | region_encoded             |                   0.0224454   |                  0.000365618 |
+    | fuel_gas                   |                   0.0213357   |                  0.000261419 |
+    | paint_color_encoded        |                   0.0204294   |                  0.000230751 |
+    | transmission_other         |                   0.011612    |                  0.000200928 |
+    | transmission_automatic     |                   0.00733399  |                  0.000224791 |
+    | vehicle_title_status       |                   0.00677997  |                  0.000101094 |
+    | fuel_other                 |                   0.00335671  |                  3.52621e-05 |
+    | transmission_manual        |                   0.00167926  |                  4.037e-05   |
+    | fuel_hybrid                |                   0.00017335  |                  6.66447e-06 |
+    | fuel_electric              |                   8.05131e-05 |                  9.45524e-06 |
+    | title_good_condition       |                   0           |                  0           |
+    | vehicle_age_condition      |                   0           |                  0           |
+    | vehicle_age                |                   0           |                  0           |
 
   ##### Linear Regression
 
@@ -479,6 +524,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
   ##### HistGradientBoostingRegressor
 
   ![Image](/images/perm_importance_HistGradientBoostingRegressor.png)
+
+  ##### DecisionTreeRegressor
+
+  ![Image](/images/perm_importance_DecisionTreeRegressor.png)
+
+  ##### RandomForestRegressor
+
+  ![Image](/images/perm_importance_RandomForestRegressor.png)
 
 ## Deployment
 
