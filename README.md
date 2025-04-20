@@ -18,7 +18,7 @@ This is the first step of Exploratory Data Analysis (EDA)
 
 * Dataset size is <b>426880 X 18</b>.
 * Many columns have missing values.
-* Size column have <b>~72%+</b> missing values.
+* <b>Size</b> column have <b>~72%+</b> missing values.
 
 ### Understanding Data via visualization
 
@@ -124,13 +124,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
             <ul>
               <li>VIN based imputation</li>
               <li>JamesSteinEncoder Encoder</li>
+              <li>Rows dropped</li>
             </ul>
           </td>
           <td>
             <ul>
               <li>Used Python package <b>vin</b> to impute missing values.</li>
-              <li>Applied JamesSteinEncoder with RandomForestRegressor encoder</li>
-              <li>Dropped encoded feature after imputing cylinders based on manufacturer.</li>
+              <li>Applied JamesSteinEncoder</li>
+              <li>Dropped 11750 rows with NaN values.</li>
             </ul>
           </td>
       </tr>
@@ -141,14 +142,16 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
             <ul>
               <li>VIN based imputation.</li>
               <li>Contextual imputation.</li>
-              <li>JamesSteinEncoder Encoder</li>
+              <li>Label Encoder</li>
+              <li>Rows dropped</li>
             </ul>
           </td>
           <td>
             <ul>
               <li>Used Python package <b>vin</b> to impute misisng values.</li>
               <li>Used manufacturer and ambigous model name to impute model with accurate values.</li>
-              <li>Applied JamesSteinEncoder with RandomForestRegressor encoder</li>
+              <li>Applied LabelEncoder</li>
+              <li>Dropped 3649 rows with NaN values.</li>
             </ul>
           </td>
       </tr>
@@ -220,13 +223,13 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>1.930753</td>
           <td>
             <ul>
-              <li><s>Ordinal Encoding</s></li>
+              <li>Ordinal Encoding</li>
               <li>Dropped the feature</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li><s>Applied ordinal encoding with order of worst to best</s></li>
+              <li>Applied ordinal encoding with order of worst to best</li>
             </ul>
           </td>
       </tr>
@@ -299,14 +302,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>30.501078</td>
           <td>
             <ul>
-              <li><s>Target based Encoding</s></li>
-              <li><Dropped</li>
+              <li>Target based Encoding</li>
+              <li>Dropped</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li><s>Applied JamesSteinEncoder with RandomForestRegressor encoder</s></li>
-              <li><Dropped the feature</li>
+              <li>Applied JamesSteinEncoder</li>
+              <li>Dropped the feature</li>
             </ul>
           </td>
       </tr>
@@ -316,7 +319,7 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>
             <ul>
               <li>Outlier removal/Mean imputation</li>
-              <li>IterativeImputer based Imputation</li>
+              <li><s>IterativeImputer based Imputation</s></li>
             </ul>
           </td>
           <td>
@@ -332,14 +335,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>NA</td>
           <td>
             <ul>
-              <li><s>Target based Encoding</s></li>
-              <li><Dropped</li>
+              <li>Target based Encoding</li>
+              <li>Dropped</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li><s>Applied JamesSteinEncoder with RandomForestRegressor encoder</s></li>
-              <li><Dropped the feature</li>
+              <li>Applied JamesSteinEncoder</li>
+              <li>Dropped the feature</li>
             </ul>
           </td>
       </tr>
@@ -348,14 +351,14 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>NA</td>
           <td>
             <ul>
-              <li><s>Target based Encoding</s></li>
-              <li><Dropped</li>
+              <li>Target based Encoding</li>
+              <li>Dropped</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li><s>Applied JamesSteinEncoder with RandomForestRegressor encoder</s></li>
-              <li><Dropped the feature</li>
+              <li>Applied JamesSteinEncoder</li>
+              <li>Dropped the feature</li>
             </ul>
           </td>
       </tr>
@@ -407,23 +410,23 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
   * Data Leakage Issue
     * Price imputation cause data leakage to the model. Due to which we saw R2 score of 0.99.
   * Model Accuracy Improvement
-    * Orginally tried 4 regression models (LinearRegression, Ridge, Lasso and ElasticNet) and R2 score was 0.53
-    * Tried 4 additional models (XGBoostRegressor, HistGradientBoostingRegressor, DecisionTreeRegressor and RandomForestRegressor) which improved R2 score to 0.82 and 0.8 for test data respectively.
+    * Orginally tried 4 regression models (LinearRegression, Ridge, Lasso and ElasticNet) with best R2 score of 0.52 for LinearRegression.
+    * Tried 4 additional models (XGBoostRegressor, HistGradientBoostingRegressor, DecisionTreeRegressor and RandomForestRegressor) which improved R2 score to 0.96 and 0.87 for test data respectively for XGBRegressor.
 
 #### Models Performance Metrics
 
-| Metric              | Linear Regressor | Ridge Regressor | Lasso Regressor | ElasticNet Regressor | XGBRegressor | Hist GradientBoosting Regressor | DecisionTreeRegressor | RandomForestRegressor |
-|---------------------|------------------|------------------|------------------|-----------------------|--------------|-------------------------------|------------------------|------------------------|
-| MSE Train           | 47601929.10      | 49643882.38      | 49643882.84      | 49643885.75           | 13351305.52  | 20897676.92                  | 13121555.02            | 2757472.66             |
-| MSE Test            | 48617621.72      | 50745609.62      | 50745595.17      | 50745702.40           | 24333799.65  | 30935852.03                  | 31571833.46            | 19984805.11            |
-| RMSE Train          | 6899.42          | 7045.84          | 7045.84          | 7045.84               | 3653.94      | 4571.40                      | 3622.37                | 1660.56                |
-| RMSE Test           | 6972.63          | 7123.60          | 7123.59          | 7123.60               | 4932.93      | 5562.00                      | 5618.88                | 4470.44                |
-| MAE Train           | 4533.00          | 4727.06          | 4727.06          | 4726.99               | 2199.54      | 2826.55                      | 1883.84                | 775.18                 |
-| MAE Test            | 4569.37          | 4768.14          | 4768.13          | 4768.08               | 2769.99      | 3299.13                      | 2931.57                | 2086.49                |
-| R2 Train            | 0.70             | 0.68             | 0.68             | 0.68                  | 0.91         | 0.87                         | 0.92                   | 0.98                   |
-| R2 Test             | 0.69             | 0.68             | 0.68             | 0.68                  | 0.84         | 0.80                         | 0.80                   | 0.87                   |
-| Adjusted R2 Train   | 0.70             | 0.68             | 0.68             | 0.68                  | 0.91         | 0.87                         | 0.92                   | 0.98                   |
-| Adjusted R2 Test    | 0.69             | 0.68             | 0.68             | 0.68                  | 0.84         | 0.80                         | 0.80                   | 0.87                   |
+| Metric                | Linear Regressor | Ridge Regressor | Lasso Regressor | ElasticNet Regressor | XGBRegressor | Hist GradientBoosting Regressor | DecisionTreeRegressor | RandomForestRegressor |
+|-----------------------|------------------|------------------|------------------|------------------------|--------------|-------------------------------|------------------------|------------------------|
+| **MSE Train**         | 74762624.03      | 79287548.20      | 79287828.96      | 79287562.17            | 6492350.16   | 23428312.52                  | 18426911.11            | 23585658.30            |
+| **MSE Test**          | 74930034.13      | 79269682.23      | 79267982.79      | 79269392.60            | 21059615.63  | 34757341.51                  | 38842914.35            | 32499719.41            |
+| **RMSE Train**        | 8646.54          | 8904.36          | 8904.37          | 8904.36                | 2548.01      | 4840.28                      | 4292.66                | 4856.51                |
+| **RMSE Test**         | 8656.21          | 8903.35          | 8903.26          | 8903.34                | 4589.08      | 5895.54                      | 6232.41                | 5700.85                |
+| **MAE Train**         | 6220.51          | 6525.19          | 6525.66          | 6525.38                | 1618.71      | 3225.69                      | 2411.08                | 2960.55                |
+| **MAE Test**          | 6231.76          | 6525.81          | 6526.20          | 6526.00                | 2633.49      | 3778.79                      | 3491.84                | 3479.00                |
+| **R² Train**          | 0.52             | 0.49             | 0.49             | 0.49                   | 0.96         | 0.85                         | 0.88                   | 0.85                   |
+| **R² Test**           | 0.52             | 0.49             | 0.49             | 0.49                   | 0.87         | 0.78                         | 0.75                   | 0.79                   |
+| **Adjusted R² Train** | 0.52             | 0.49             | 0.49             | 0.49                   | 0.96         | 0.85                         | 0.88                   | 0.85                   |
+| **Adjusted R² Test**  | 0.52             | 0.49             | 0.49             | 0.49                   | 0.87         | 0.78                         | 0.75                   | 0.79                   |
 
 #### Models Loss Function Visualization
 
@@ -489,16 +492,21 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
     | Features                   |   Permutation Importance Mean |   Permutation Importance Std |
     |----------------------------|-------------------------------|------------------------------|
-    | model_encoded              |                          0.71 |                            0 |
-    | odometer                   |                          0.12 |                            0 |
-    | vehicle_age                |                          0.1  |                            0 |
-    | log_vehicle_age            |                          0.1  |                            0 |
-    | num_cylinders              |                          0.08 |                            0 |
-    | vehicle_type               |                          0.08 |                            0 |
-    | vehicle_drive              |                          0.07 |                            0 |
-    | vehicle_age_odometer_ratio |                          0.06 |                            0 |
+    | log_vehicle_age            |                          0.44 |                            0 |
+    | odometer                   |                          0.29 |                            0 |
+    | model_encoded              |                          0.23 |                            0 |
+    | num_cylinders              |                          0.17 |                            0 |
+    | vehicle_age_odometer_ratio |                          0.14 |                            0 |
+    | vehicle_type               |                          0.11 |                            0 |
+    | vehicle_condition          |                          0.06 |                            0 |
+    | vehicle_drive              |                          0.05 |                            0 |
     | vehicle_age_condition      |                          0.05 |                            0 |
-    | vehicle_condition          |                          0.02 |                            0 |
+    | region_encoded             |                          0.04 |                            0 |
+    | state_encoded              |                          0.04 |                            0 |
+    | paint_color_encoded        |                          0.03 |                            0 |
+    | vehicle_title_status       |                          0    |                            0 |
+    | vehicle_age                |                          0    |                            0 |
+    | manufacturer_encoded       |                          0    |                            0 |
 
   ##### Linear Regression
 
