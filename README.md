@@ -239,6 +239,7 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>
             <ul>
               <li><s>OHE</s></li>
+              <li>Dropped</li>
             </ul>
           </td>
           <td>
@@ -303,13 +304,13 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>
             <ul>
               <li>Target based Encoding</li>
-              <li>Dropped</li>
+              <li><s>Dropped</s></li>
             </ul>
           </td>
           <td>
             <ul>
               <li>Applied JamesSteinEncoder</li>
-              <li>Dropped the feature</li>
+              <li><s>Dropped the feature</s></li>
             </ul>
           </td>
       </tr>
@@ -336,13 +337,13 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>
             <ul>
               <li>Target based Encoding</li>
-              <li>Dropped</li>
+              <li><s>Dropped</s></li>
             </ul>
           </td>
           <td>
             <ul>
               <li>Applied JamesSteinEncoder</li>
-              <li>Dropped the feature</li>
+              <li><s>Dropped the feature</s></li>
             </ul>
           </td>
       </tr>
@@ -352,13 +353,13 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
           <td>
             <ul>
               <li>Target based Encoding</li>
-              <li>Dropped</li>
+              <li><s>Dropped</s></li>
             </ul>
           </td>
           <td>
             <ul>
               <li>Applied JamesSteinEncoder</li>
-              <li>Dropped the feature</li>
+              <li><s>Dropped the feature</s></li>
             </ul>
           </td>
       </tr>
