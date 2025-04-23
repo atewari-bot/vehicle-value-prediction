@@ -72,9 +72,9 @@ This is the first step of Exploratory Data Analysis (EDA)
 
 Data preperation is the next step of Exploratory Data Analysis (EDA)
 
-### Data Type Transformation
+### ~~Data Type Transformation~~
 
-* Performed data type transformation from <b>Object</b> data type to <b>String</b> type.
+* ~~Performed data type transformation from <b>Object</b> data type to <b>String</b> type.~~
 
 ### Drop Columns/Rows
 
@@ -416,40 +416,22 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
 #### Models Performance Metrics
 
-| Metric                | Linear Regressor | Ridge Regressor | Lasso Regressor | ElasticNet Regressor | XGBRegressor | Hist GradientBoosting Regressor | DecisionTreeRegressor | RandomForestRegressor |
-|-----------------------|------------------|------------------|------------------|------------------------|--------------|-------------------------------|------------------------|------------------------|
-| **MSE Train**         | 74762624.03      | 79287548.20      | 79287828.96      | 79287562.17            | 6492350.16   | 23428312.52                  | 18426911.11            | 23585658.30            |
-| **MSE Test**          | 74930034.13      | 79269682.23      | 79267982.79      | 79269392.60            | 21059615.63  | 34757341.51                  | 38842914.35            | 32499719.41            |
-| **RMSE Train**        | 8646.54          | 8904.36          | 8904.37          | 8904.36                | 2548.01      | 4840.28                      | 4292.66                | 4856.51                |
-| **RMSE Test**         | 8656.21          | 8903.35          | 8903.26          | 8903.34                | 4589.08      | 5895.54                      | 6232.41                | 5700.85                |
-| **MAE Train**         | 6220.51          | 6525.19          | 6525.66          | 6525.38                | 1618.71      | 3225.69                      | 2411.08                | 2960.55                |
-| **MAE Test**          | 6231.76          | 6525.81          | 6526.20          | 6526.00                | 2633.49      | 3778.79                      | 3491.84                | 3479.00                |
-| **R² Train**          | 0.52             | 0.49             | 0.49             | 0.49                   | 0.96         | 0.85                         | 0.88                   | 0.85                   |
-| **R² Test**           | 0.52             | 0.49             | 0.49             | 0.49                   | 0.87         | 0.78                         | 0.75                   | 0.79                   |
-| **Adjusted R² Train** | 0.52             | 0.49             | 0.49             | 0.49                   | 0.96         | 0.85                         | 0.88                   | 0.85                   |
-| **Adjusted R² Test**  | 0.52             | 0.49             | 0.49             | 0.49                   | 0.87         | 0.78                         | 0.75                   | 0.79                   |
-
-#### Models Loss Function Visualization
-
-  ##### Mean Squared Error (MSE)
-
-  ![Image](/images/model_mse_evaluation.png)
-
-  ##### Root Mean Squared Error (RMSE)
-
-  ![Image](/images/model_rmse_evaluation.png)
-
-  ##### Mean Absolute Error (MAE)
-
-  ![Image](/images/model_mae_evaluation.png)
-
-  ##### R2 Score
-
-  ![Image](/images/model_r2_evaluation.png)
+  | Metric               | Linear Regressor | Ridge Regressor | Lasso Regressor | ElasticNet Regressor | XGBRegressor | Hist GradientBoosting Regressor | DecisionTreeRegressor | RandomForestRegressor |
+  |----------------------|------------------|------------------|------------------|------------------------|--------------|-------------------------------|------------------------|------------------------|
+  | **MSE Train**        | 75121169.92      | 79581191.70      | 79581544.00      | 79581204.26            | 6545367.64   | 27613032.57                  | 18560652.04            | 23827228.90            |
+  | **MSE Test**         | 74100555.71      | 78576265.79      | 78575319.72      | 78576312.75            | 20233401.13  | 34979545.01                  | 37625289.23            | 31594644.17            |
+  | **RMSE Train**       | 8667.25          | 8920.83          | 8920.85          | 8920.83                | 2558.39      | 5254.81                      | 4308.21                | 4881.31                |
+  | **RMSE Test**        | 8608.17          | 8864.33          | 8864.27          | 8864.33                | 4498.16      | 5914.35                      | 6133.95                | 5620.91                |
+  | **MAE Train**        | 6232.58          | 6534.51          | 6535.02          | 6534.67                | 1623.06      | 3476.27                      | 2397.21                | 2968.86                |
+  | **MAE Test**         | 6199.55          | 6500.91          | 6501.40          | 6501.07                | 2595.25      | 3845.91                      | 3420.69                | 3449.59                |
+  | **R2 Train**         | 0.52             | 0.49             | 0.49             | 0.49                   | 0.96         | 0.82                         | 0.88                   | 0.85                   |
+  | **R2 Test**          | 0.52             | 0.49             | 0.49             | 0.49                   | 0.87         | 0.77                         | 0.76                   | 0.80                   |
+  | **Adjusted R2 Train**| 0.52             | 0.49             | 0.49             | 0.49                   | 0.96         | 0.82                         | 0.88                   | 0.85                   |
+  | **Adjusted R2 Test** | 0.52             | 0.49             | 0.49             | 0.49                   | 0.87         | 0.77                         | 0.76                   | 0.80                   |
 
   **Key Takeaways:**
-  * RandomForestRegressor have the least value for loss function.
-  * RandomForestRegressor have best R2 score value of ~0.87 for test and validation data set. This mean model is capturing 87% of the patterns that determine car prices based on the features provided.
+  * XGBRegressor have the least value for loss function.
+  * XGBRegressor have best R2 score value of ~0.87 for test and validation data set. This mean model is capturing 87% of the patterns that determine car prices based on the features provided.
 
 #### Actual Vs Predicted Price Visualization
 
@@ -489,19 +471,19 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
   * A permutation importance mean of 0 means that shuffling that feature had no effect on the model’s performance — at all.
   * A permutation importance standard deviation (std) of 0 means that across all the permutations (random shuffles) done during the importance calculation, the feature’s impact on the model’s performance was exactly the same every time.
-  * Most important features as per best model based on RandomForestRegressor are as follows:
+  * Most important features as per best model based on XGBRegressor are as follows:
 
     | Features                   |   Permutation Importance Mean |   Permutation Importance Std |
     |----------------------------|-------------------------------|------------------------------|
-    | log_vehicle_age            |                          0.44 |                            0 |
-    | odometer                   |                          0.29 |                            0 |
+    | log_vehicle_age            |                          0.41 |                            0 |
+    | odometer                   |                          0.31 |                            0 |
     | model_encoded              |                          0.23 |                            0 |
+    | vehicle_age_odometer_ratio |                          0.21 |                            0 |
     | num_cylinders              |                          0.17 |                            0 |
-    | vehicle_age_odometer_ratio |                          0.14 |                            0 |
     | vehicle_type               |                          0.11 |                            0 |
     | vehicle_condition          |                          0.06 |                            0 |
+    | vehicle_age_condition      |                          0.06 |                            0 |
     | vehicle_drive              |                          0.05 |                            0 |
-    | vehicle_age_condition      |                          0.05 |                            0 |
     | region_encoded             |                          0.04 |                            0 |
     | state_encoded              |                          0.04 |                            0 |
     | paint_color_encoded        |                          0.03 |                            0 |
@@ -548,16 +530,22 @@ Data preperation is the next step of Exploratory Data Analysis (EDA)
 
 ### Post-deployment Models Loss Function Visualization
 
+#### Models Loss Function Visualization
+
   ##### Mean Squared Error (MSE)
 
-  ![Image](/images/model_mse_evaluation_for_validation.png)
+  ![Image](/images/mse_evaluation_for_models.png)
+
+  ##### Root Mean Squared Error (RMSE)
+
+  ![Image](/images/rmse_evaluation_for_models.png)
 
   ##### Mean Absolute Error (MAE)
 
-  ![Image](/images/model_mae_evaluation_for_validation.png)
+  ![Image](/images/mae_evaluation_for_models.png)
 
   ##### R2 Score
 
-  ![Image](/images/model_r2_evaluation_for_validation.png)
+  ![Image](/images/r2_evaluation_for_models.png)
 
 
